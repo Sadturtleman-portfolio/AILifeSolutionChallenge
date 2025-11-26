@@ -36,7 +36,7 @@ fun HomeScreen(
 
     when (state){
         is BarcodeDrugState.Idle -> {
-            IdleStateHomeScreen {
+            IdleStateHomeScreen(modifier = modifier) {
                 scanner.startScan()
                     .addOnSuccessListener {barcode ->
                         val raw = barcode.rawValue ?: ""
@@ -74,9 +74,9 @@ fun HomeScreen(
 }
 
 @Composable
-private fun IdleStateHomeScreen(onScanClick: () -> Unit){
+private fun IdleStateHomeScreen(modifier: Modifier = Modifier, onScanClick: () -> Unit){
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
