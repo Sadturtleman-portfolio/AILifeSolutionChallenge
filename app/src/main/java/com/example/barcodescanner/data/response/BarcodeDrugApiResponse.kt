@@ -3,16 +3,10 @@ package com.example.barcodescanner.data.response
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-data class FoodSafetyResponse(
-    @SerialName("C005") val c005: C005Response? = null
-)
 
 @Serializable
-data class C005Response(
-    @SerialName("total_count") val totalCount: String? = null,
-    @SerialName("row") val row: List<BarcodeFoodItem>? = null,
-    @SerialName("RESULT") val result: ResultMessage? = null
+data class FoodSafetyResponse(
+    @SerialName("C005") val c005: CResponse<BarcodeFoodItem>
 )
 
 @Serializable
@@ -27,10 +21,4 @@ data class BarcodeFoodItem(
     @SerialName("SITE_ADDR") val address: String? = null,
     @SerialName("CLSBIZ_DT") val closeDate: String? = null,
     @SerialName("BAR_CD") val barcode: String? = null
-)
-
-@Serializable
-data class ResultMessage(
-    @SerialName("MSG") val message: String? = null,
-    @SerialName("CODE") val code: String? = null
 )

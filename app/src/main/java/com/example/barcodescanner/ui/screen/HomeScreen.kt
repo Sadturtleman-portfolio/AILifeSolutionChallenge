@@ -21,6 +21,7 @@ import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 
 @Composable
 fun HomeScreen(
+    onScanClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     barcodeDrugViewModel: BarcodeViewModel = hiltViewModel()
 ){
@@ -51,14 +52,7 @@ fun HomeScreen(
             CircularProgressIndicator()
         }
         is BarcodeDrugState.Success -> {
-            Column {
-                Text(
-                    (state as BarcodeDrugState.Success).data.toString()
-                )
-                Text(
-                    (state as BarcodeDrugState.Success).barcode
-                )
-            }
+            onScanClick((state as BarcodeDrugState.Success).data.reportNumber ?: "")
         }
         is BarcodeDrugState.Error -> {
             Column {

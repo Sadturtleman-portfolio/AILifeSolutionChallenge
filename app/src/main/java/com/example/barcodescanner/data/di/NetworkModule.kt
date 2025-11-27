@@ -3,6 +3,7 @@ package com.example.barcodescanner.data.di
 import com.example.barcodescanner.BuildConfig
 import com.example.barcodescanner.data.api.BarcodeDrugApiService
 import com.example.barcodescanner.data.api.BarcodeDrugRetrofit
+import com.example.barcodescanner.data.api.FoodNutritionApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,5 +55,10 @@ object NetworkModule {
     @Singleton
     fun provideBarcodeDrugApi(@BarcodeDrugRetrofit retrofit: Retrofit): BarcodeDrugApiService =
         retrofit.create(BarcodeDrugApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFoodApi(@BarcodeDrugRetrofit retrofit: Retrofit): FoodNutritionApiService =
+        retrofit.create(FoodNutritionApiService::class.java)
 
 }

@@ -18,7 +18,7 @@ class BarcodeDrugImpl @Inject constructor(
             val response = apiService.getFoodByBarcode(
                 barcode = barcodeNumber
             )
-            val item = response.c005?.row?.firstOrNull()
+            val item = response.c005.row?.firstOrNull()
                 ?: throw IllegalArgumentException("None Data")
             item
         }.onFailure { exception ->
