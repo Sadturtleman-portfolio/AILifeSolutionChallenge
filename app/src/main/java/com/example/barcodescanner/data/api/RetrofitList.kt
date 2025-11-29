@@ -5,3 +5,11 @@ import javax.inject.Qualifier
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class BarcodeDrugRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class FoodNutritionIngredientRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class GeminiRetrofit

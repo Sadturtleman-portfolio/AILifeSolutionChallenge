@@ -17,8 +17,11 @@ class NutritionViewModel @Inject constructor(
 ): ViewModel() {
     private val _nutritionState = MutableStateFlow<NutritionState>(NutritionState.Idle())
     val nutritionState: StateFlow<NutritionState> = _nutritionState
-
+    fun reset() {
+        _nutritionState.value = NutritionState.Idle()
+    }
     fun findNutritionByCode(code: String){
+        _nutritionState.value = NutritionState.Loading()
         viewModelScope.launch {
             nutritionRepository.getFoodNutritionByReportNumber(code)
                 .onSuccess { response ->

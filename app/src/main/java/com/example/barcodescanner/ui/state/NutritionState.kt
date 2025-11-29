@@ -6,7 +6,7 @@ sealed class NutritionState(
     open val nutritionList: NutritionModel = NutritionModel("", emptyList())
 ){
     data class Idle(override val nutritionList: NutritionModel = NutritionModel("", emptyList())) : NutritionState(nutritionList)
-    data class Loading(override val nutritionList: NutritionModel): NutritionState(nutritionList)
+    data class Loading(override val nutritionList: NutritionModel = NutritionModel("", emptyList())): NutritionState(nutritionList)
     data class Success(
         override val nutritionList: NutritionModel
     ): NutritionState(nutritionList)

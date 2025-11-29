@@ -17,7 +17,9 @@ class BarcodeViewModel @Inject constructor(
 
     private val _barcodeDrugState = MutableStateFlow<BarcodeDrugState>(BarcodeDrugState.Idle())
     val barcodeDrugState: StateFlow<BarcodeDrugState> = _barcodeDrugState
-
+    fun reset() {
+        _barcodeDrugState.value = BarcodeDrugState.Idle()
+    }
     fun scanBarcode(raw: String) {
         // 숫자만 허용
         if (!raw.all { it.isDigit() }) return

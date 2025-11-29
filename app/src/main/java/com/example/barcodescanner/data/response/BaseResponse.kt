@@ -16,3 +16,4 @@ data class CResponse<T>(
     @SerialName("row") val row: List<T>? = null,
     @SerialName("RESULT") val result: ResultMessage? = null
 )
+

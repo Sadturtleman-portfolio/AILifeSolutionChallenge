@@ -43,6 +43,26 @@ android {
             "DRUG_BARCODE_SAFETY_API_KEY",
             "\"${properties["DRUG_BARCODE_SAFETY_API_KEY"]}\""
         )
+        buildConfigField(
+            "String",
+            "FOOD_NUTRITION_INGREDIENT_API",
+            "\"${properties["FOOD_NUTRITION_INGREDIENT_API"]}\""
+        )
+        buildConfigField(
+            "String",
+            "FOOD_NUTRITION_INGREDIENT_API_KEY",
+            "\"${properties["FOOD_NUTRITION_INGREDIENT_API_KEY"]}\""
+        )
+        buildConfigField(
+            "String",
+            "GEMINI_API_KEY",
+            "\"${properties["GEMINI_API_KEY"]}\""
+        )
+        buildConfigField(
+            "String",
+            "GEMINI_API",
+            "\"${properties["GEMINI_API"]}\""
+        )
     }
 
     buildTypes {
@@ -78,6 +98,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.navigation.compose)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.ui)
     ksp(libs.hilt.android.compiler)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.kotlinx.serialization)

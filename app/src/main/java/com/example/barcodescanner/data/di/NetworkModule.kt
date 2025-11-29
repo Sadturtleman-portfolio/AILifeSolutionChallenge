@@ -4,6 +4,10 @@ import com.example.barcodescanner.BuildConfig
 import com.example.barcodescanner.data.api.BarcodeDrugApiService
 import com.example.barcodescanner.data.api.BarcodeDrugRetrofit
 import com.example.barcodescanner.data.api.FoodNutritionApiService
+import com.example.barcodescanner.data.api.FoodNutritionIngredientApiService
+import com.example.barcodescanner.data.api.FoodNutritionIngredientRetrofit
+import com.example.barcodescanner.data.api.GeminiApiService
+import com.example.barcodescanner.data.api.GeminiRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,6 +55,32 @@ object NetworkModule {
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
 
+    @FoodNutritionIngredientRetrofit
+    @Provides
+    @Singleton
+    fun provideFoodNutritionIngredientRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.FOOD_NUTRITION_INGREDIENT_API)
+            .client(okHttpClient)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+
+    @GeminiRetrofit
+    @Provides
+    @Singleton
+    fun provideGeminiRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.GEMINI_API)
+            .client(okHttpClient)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideGeminiApi(@GeminiRetrofit retrofit: Retrofit): GeminiApiService =
+        retrofit.create(GeminiApiService::class.java)
+
+
     @Provides
     @Singleton
     fun provideBarcodeDrugApi(@BarcodeDrugRetrofit retrofit: Retrofit): BarcodeDrugApiService =
@@ -61,4 +91,9 @@ object NetworkModule {
     fun provideFoodApi(@BarcodeDrugRetrofit retrofit: Retrofit): FoodNutritionApiService =
         retrofit.create(FoodNutritionApiService::class.java)
 
+
+    @Provides
+    @Singleton
+    fun provideFoodNutritionIngredientApi(@FoodNutritionIngredientRetrofit retrofit: Retrofit): FoodNutritionIngredientApiService =
+        retrofit.create(FoodNutritionIngredientApiService::class.java)
 }
